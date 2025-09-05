@@ -2,20 +2,28 @@
   "name": "RightsGuard",
   "short_name": "RightsGuard",
   "description": "Your rights, simplified. Know what to say, when to say it.",
-  "start_url": "https://07c5c9ba7c7f47a182ec74ac43cb007d-vhha.vercel.app",
+  "start_url": "/",
   "display": "standalone",
-  "background_color": "#1e3a8a",
-  "theme_color": "#1e40af",
+  "background_color": "#f0f4f8",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/icon-192.png",
+      "src": "/icon-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "maskable any"
     },
     {
-      "src": "/icon-512.png",
+      "src": "/icon-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "maskable any"
     }
-  ]
+  ],
+  "categories": ["legal", "education", "utilities"],
+  "lang": "en",
+  "dir": "ltr",
+  "scope": "/",
+  "prefer_related_applications": false
 }

@@ -1,17 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       colors: {
-        primary: 'hsl(210, 100%, 50%)',
-        accent: 'hsl(130, 70%, 50%)',
-        error: 'hsl(0, 80%, 50%)',
+        // Design system tokens
         bg: 'hsl(210, 30%, 95%)',
+        error: 'hsl(0, 80%, 50%)',
+        accent: 'hsl(130, 70%, 50%)',
+        primary: 'hsl(210, 100%, 50%)',
         surface: 'hsl(210, 30%, 100%)',
         'text-primary': 'hsl(210, 20%, 15%)',
         'text-secondary': 'hsl(210, 20%, 40%)',
@@ -32,16 +33,25 @@ module.exports = {
         'card': '0 6px 16px hsla(210,30%,10%,0.12)',
       },
       animation: {
-        'pulse-slow': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'fade-in': 'fadeIn 0.2s cubic-bezier(0.25,0.8,0.25,1)',
+        'pulse-red': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
-      keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0', transform: 'translateY(10px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
+      transitionTimingFunction: {
+        'custom': 'cubic-bezier(0.25,0.8,0.25,1)',
+      },
+      transitionDuration: {
+        'fast': '100ms',
+        'base': '200ms',
+        'slow': '300ms',
+      },
+      typography: {
+        'display': 'text-3xl font-bold',
+        'heading': 'text-xl font-semibold',
+        'body': 'text-base leading-7',
+        'caption': 'text-sm text-secondary',
       },
     },
   },
-  plugins: [],
-}
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
+};
