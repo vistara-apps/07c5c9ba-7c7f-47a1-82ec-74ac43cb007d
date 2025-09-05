@@ -2,7 +2,7 @@
   "name": "RightsGuard",
   "short_name": "RightsGuard",
   "description": "Your rights, simplified. Know what to say, when to say it.",
-  "start_url": "/",
+  "start_url": "https://07c5c9ba7c7f47a182ec74ac43cb007d-vhha.vercel.app",
   "display": "standalone",
   "background_color": "#1e3a8a",
   "theme_color": "#1e40af",
