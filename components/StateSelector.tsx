@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { ChevronDown, MapPin } from 'lucide-react';
-import { US_STATES, getStateFullName } from '@/lib/utils';
+import { US_STATES } from '@/lib/types';
+import { getStateFullName } from '@/lib/utils';
 
 interface StateSelectorProps {
   selectedState: string;
