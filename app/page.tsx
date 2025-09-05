@@ -9,8 +9,8 @@ import { RecordAlarmButton } from '@/components/RecordAlarmButton';
 import { ShareButton } from '@/components/ShareButton';
 import { StateSelector } from '@/components/StateSelector';
 import { LanguageToggle } from '@/components/LanguageToggle';
-import { RightsGuide, SessionLog, ScenarioScript } from '@/lib/types';
-import { SCENARIOS, getScenarioTitle } from '@/lib/utils';
+import { RightsGuide, SessionLog, ScenarioScript, SCENARIOS } from '@/lib/types';
+import { getScenarioTitle } from '@/lib/utils';
 import { generateScenarioScript, generateRightsGuide, generateShareableCardContent } from '@/lib/openai';
 import { Shield, BookOpen, Mic, Share2, TrendingUp, DollarSign } from 'lucide-react';
 
