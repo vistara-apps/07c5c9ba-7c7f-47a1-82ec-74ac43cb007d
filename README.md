@@ -1,167 +1,247 @@
 # RightsGuard - Base Mini App
 
-Your rights, simplified. Know what to say, when to say it.
+**Your rights, simplified. Know what to say, when to say it.**
 
-## Overview
+RightsGuard is a production-ready Next.js Base Mini App that provides users with instant access to state-specific legal guidance, scenario-based scripts, and emergency recording tools to protect their rights during police interactions.
 
-RightsGuard is a mobile-first Base Mini App that provides one-page, mobile-optimized guides on user rights during police interactions. It features scenario-based scripts, on-the-spot assistance tools, and is designed for Base Wallet MiniApps and Farcaster integration.
+## 🚀 Features
 
-## Features
+### Core Features
 
-### 🛡️ Concise Legal Snapshots
-- Mobile-first, one-page guides for common scenarios
-- State-specific legal information
-- Available in English and Spanish
-- Easily digestible and actionable content
+1. **Concise Legal Snapshots**
+   - Mobile-first, one-page guides for common scenarios (traffic stops, questioning)
+   - State-specific legal information tailored to local laws
+   - Available in English and Spanish
 
-### 📝 Scenario-Based Scripts
-- Pre-written, legally sound phrases
-- Context-aware responses for different situations
-- Audio playback and copy-to-clipboard functionality
-- Multi-language support
+2. **Scenario-Based Scripts**
+   - Pre-written, legally sound phrases for various situations
+   - Context-aware scripts with text-to-speech functionality
+   - Copy-to-clipboard functionality for quick access
 
-### 🚨 One-Tap Incident Recorder & Alert
-- Immediate audio recording with location capture
-- Automatic emergency contact notifications
-- Visual recording indicators
-- Secure incident documentation
+3. **One-Tap Incident Recorder & Alert**
+   - Emergency recording with location tracking
+   - Automatic alerts to pre-selected emergency contacts
+   - Secure audio storage and documentation
 
-### 📤 Auto-Generated Shareable Cards
-- AI-powered incident summaries
-- Social media ready formats
-- Easy sharing to Twitter and Farcaster
-- Blockchain-verifiable reports (future feature)
+4. **Auto-Generated Shareable Cards**
+   - AI-powered incident summaries
+   - Easy sharing with trusted contacts or legal counsel
+   - Timestamped and location-tagged documentation
 
-## Tech Stack
+### Technical Features
 
-- **Framework**: Next.js 15 with App Router
-- **Blockchain**: Base (via OnchainKit)
-- **Styling**: Tailwind CSS
-- **AI**: OpenAI API for content generation
-- **Backend**: Supabase for data persistence
-- **Payments**: Stripe for micro-transactions
-- **Social**: Farcaster integration
+- **Next.js 14** with App Router
+- **TypeScript** for type safety
+- **Tailwind CSS** with custom design system
+- **Supabase** for backend and database
+- **Stripe** for secure payments
+- **OpenAI** for content generation
+- **Progressive Web App** (PWA) capabilities
+- **Mobile-optimized** responsive design
 
-## Getting Started
+## 🛠 Tech Stack
 
-### Prerequisites
+- **Frontend**: Next.js 14, React 18, TypeScript
+- **Styling**: Tailwind CSS with custom design tokens
+- **Backend**: Supabase (PostgreSQL, Auth, Storage)
+- **Payments**: Stripe
+- **AI**: OpenAI GPT-3.5-turbo
+- **Icons**: Lucide React
+- **Deployment**: Vercel (recommended)
 
-- Node.js 18+ 
-- npm or yarn
-- Base wallet for testing
+## 📦 Installation
 
-### Installation
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd rightsguard-miniapp
+   ```
 
-1. Clone the repository:
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env.local
+   ```
+   
+   Fill in your environment variables:
+   ```env
+   # Supabase
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+
+   # Stripe
+   NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
+   STRIPE_SECRET_KEY=your_stripe_secret_key
+
+   # OpenAI
+   OPENAI_API_KEY=your_openai_api_key
+
+   # App Configuration
+   NEXT_PUBLIC_APP_URL=http://localhost:3000
+   ```
+
+4. **Set up the database**
+   - Create a new Supabase project
+   - Run the SQL schema from `database/schema.sql` in your Supabase SQL editor
+   - Enable Row Level Security (RLS) policies
+
+5. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+6. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+## 🏗 Project Structure
+
+```
+src/
+├── app/                    # Next.js App Router
+│   ├── api/               # API routes
+│   │   ├── guides/        # Rights guides endpoints
+│   │   ├── payment/       # Stripe payment endpoints
+│   │   ├── scripts/       # Script generation endpoints
+│   │   └── recording/     # Recording endpoints
+│   ├── globals.css        # Global styles
+│   ├── layout.tsx         # Root layout
+│   └── page.tsx          # Home page
+├── components/            # React components
+│   ├── ui/               # Reusable UI components
+│   └── features/         # Feature-specific components
+├── lib/                  # Library configurations
+│   ├── supabase.ts       # Supabase client
+│   ├── stripe.ts         # Stripe configuration
+│   └── openai.ts         # OpenAI client
+├── types/                # TypeScript type definitions
+├── utils/                # Utility functions
+│   ├── constants.ts      # App constants
+│   └── helpers.ts        # Helper functions
+└── hooks/                # Custom React hooks
+```
+
+## 🎨 Design System
+
+The app uses a custom design system built with Tailwind CSS:
+
+### Color Tokens
+- **Primary**: `hsl(210, 100%, 50%)` - Main brand color
+- **Accent**: `hsl(130, 70%, 50%)` - Success/positive actions
+- **Error**: `hsl(0, 80%, 50%)` - Error states
+- **Surface**: `hsl(210, 30%, 100%)` - Card backgrounds
+- **Background**: `hsl(210, 30%, 95%)` - Page background
+
+### Spacing & Layout
+- **Grid**: 12-column fluid grid with 16px gutters
+- **Container**: max-width 768px (3xl) with responsive padding
+- **Spacing**: 8px, 12px, 16px, 24px scale
+
+### Typography
+- **Display**: 3xl font-bold for main headings
+- **Heading**: xl font-semibold for section headings
+- **Body**: base leading-7 for body text
+- **Caption**: sm text-secondary for supporting text
+
+## 🔧 API Endpoints
+
+### Rights Guides
+- `GET /api/guides` - Fetch available guides
+- `POST /api/guides` - Create new guide
+
+### Payment
+- `POST /api/payment/create-intent` - Create Stripe payment intent
+
+### Scripts
+- `GET /api/scripts/generate` - Fetch scenario scripts
+- `POST /api/scripts/generate` - Generate new script
+
+### Recording
+- `POST /api/recording/start` - Start emergency recording
+- `POST /api/recording/stop` - Stop recording and process
+
+## 💳 Business Model
+
+### Micro-transactions
+- **Single Guide**: $0.99 per state-specific guide
+- **Full Access**: $2.99 for unlimited access to all guides
+- **Incident Recording**: $0.50 per emergency recording session
+
+### Payment Flow
+1. User selects a guide or feature
+2. Stripe payment intent created
+3. User completes payment
+4. Content unlocked immediately
+5. Purchase tracked in database
+
+## 🔒 Security & Privacy
+
+- **Row Level Security** (RLS) enabled on all user data
+- **Encrypted audio storage** via Supabase Storage
+- **HTTPS-only** communication
+- **No tracking** of user location without explicit consent
+- **GDPR compliant** data handling
+
+## 🌐 Deployment
+
+### Vercel (Recommended)
+1. Connect your GitHub repository to Vercel
+2. Set environment variables in Vercel dashboard
+3. Deploy automatically on push to main branch
+
+### Manual Deployment
 ```bash
-git clone https://github.com/your-org/rightsguard-base-miniapp.git
-cd rightsguard-base-miniapp
+npm run build
+npm start
 ```
 
-2. Install dependencies:
+## 🧪 Testing
+
 ```bash
-npm install
+# Run type checking
+npm run type-check
+
+# Run linting
+npm run lint
+
+# Build for production
+npm run build
 ```
 
-3. Set up environment variables:
-```bash
-cp .env.example .env.local
-```
+## 📱 PWA Features
 
-Fill in your API keys:
-- `NEXT_PUBLIC_ONCHAINKIT_API_KEY`: Your OnchainKit API key
-- `OPENAI_API_KEY`: OpenAI API key for content generation
-- `SUPABASE_URL` & `SUPABASE_ANON_KEY`: Supabase configuration
-- `STRIPE_PUBLISHABLE_KEY` & `STRIPE_SECRET_KEY`: Stripe payment keys
+- **Offline support** for critical features
+- **Install prompt** for mobile devices
+- **Push notifications** for emergency alerts
+- **Background sync** for recordings
 
-4. Run the development server:
-```bash
-npm run dev
-```
-
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## Architecture
-
-### Component Structure
-```
-components/
-├── AppFrame.tsx          # Main app layout with navigation
-├── RightsCard.tsx        # Legal guide display component
-├── ScriptButton.tsx      # Interactive script component
-├── RecordAlarmButton.tsx # Emergency recording functionality
-├── ShareButton.tsx       # Social sharing component
-├── StateSelector.tsx     # State selection dropdown
-└── LanguageToggle.tsx    # Language switching component
-```
-
-### Data Models
-
-#### User
-- `userId`: Unique identifier
-- `farcasterId`: Optional Farcaster ID
-- `walletAddress`: Base wallet address
-- `preferredState`: Selected state for legal guidance
-- `preferredLanguage`: 'en' or 'es'
-- `registeredContacts`: Emergency contact list
-
-#### RightsGuide
-- `guideId`: Unique guide identifier
-- `state`: US state code
-- `title`: Guide title
-- `content`: Legal guidance content
-- `language`: Content language
-- `scenario`: Interaction type
-- `price`: Guide cost in USD
-
-#### SessionLog
-- `logId`: Session identifier
-- `userId`: Associated user
-- `startTime`/`endTime`: Recording timestamps
-- `location`: GPS coordinates and address
-- `audioRecordingUrl`: Recording file URL
-- `incidentType`: Type of interaction
-
-## Business Model
-
-RightsGuard operates on a micro-transaction model:
-
-- **Pay-per-guide**: $0.50-$1.00 per state-specific guide
-- **Full access unlock**: $2.99 for all guides
-- **Premium features**: Advanced scenarios, multi-language support
-
-## Deployment
-
-### Base Testnet
-1. Configure your Base testnet wallet
-2. Deploy to Vercel or similar platform
-3. Test MiniApp integration in Base wallet
-
-### Production
-1. Set up production environment variables
-2. Configure Stripe for live payments
-3. Deploy to production Base network
-
-## Contributing
+## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Commit your changes: `git commit -m 'Add amazing feature'`
-4. Push to the branch: `git push origin feature/amazing-feature`
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## Legal Disclaimer
-
-RightsGuard provides general legal information and should not be considered legal advice. Users should consult with qualified attorneys for specific legal situations. The app's content is for educational purposes only.
-
-## License
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Support
+## 🆘 Support
 
-For support, email support@rightsguard.app or join our community on Farcaster.
+For support, email support@rightsguard.app or create an issue in this repository.
+
+## 🙏 Acknowledgments
+
+- Built for the Base ecosystem
+- Designed for Farcaster integration
+- Inspired by civil rights advocacy organizations
+- Powered by modern web technologies
 
 ---
 
-Built with ❤️ for civil rights and digital empowerment.
+**⚠️ Legal Disclaimer**: This app provides general legal information and should not be considered legal advice. Always consult with a qualified attorney for specific legal situations.
